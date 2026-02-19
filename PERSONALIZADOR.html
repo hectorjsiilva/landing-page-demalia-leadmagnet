@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizador Visual - Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27, #050812);
+            color: #f5f5f5;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subheader {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .panel {
+            background: rgba(0, 102, 255, 0.05);
+            border: 2px solid rgba(0, 102, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .panel h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid rgba(0, 102, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            color: #f5f5f5;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(0, 102, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        .preview {
+            background: linear-gradient(135deg, #0a0e27, #050812);
+            border: 2px solid rgba(0, 102, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .preview h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            word-break: break-word;
+        }
+
+        .preview p {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 2px solid rgba(0, 102, 255, 0.3);
+        }
+
+        .code-output {
+            background: rgba(0, 20, 50, 0.8);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            color: #00d4ff;
+            line-height: 1.6;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .button-preview {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: white;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+
+        .button-preview:hover {
+            transform: translateY(-3px);
+        }
+
+        .copy-btn {
+            font-size: 0.8rem;
+            padding: 8px 15px;
+            width: auto;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .section-divider {
+            grid-column: 1 / -1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.3), transparent);
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎨 Personalizador Visual</h1>
+            <p class="subheader">Visualiza cambios en tiempo real</p>
+        </div>
+
+        <div class="grid">
+            <!-- Textos Principales -->
+            <div class="panel">
+                <h2>📝 Textos Principales</h2>
+                
+                <div class="control-group">
+                    <label>Nombre de Empresa</label>
+                    <input type="text" id="companyName" value="DeMalia" 
+                           placeholder="Tu nombre de empresa">
+                    <div class="code-output">En index.html línea: <strong>20</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Tagline</label>
+                    <input type="text" id="tagline" value="Automatización de Procesos Estratégica" 
+                           placeholder="Tu tagline">
+                    <div class="code-output">En index.html línea: <strong>22</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Título Principal</label>
+                    <input type="text" id="mainTitle" value="Descubre Cómo Automatizar Tu Negocio" 
+                           placeholder="Título principal">
+                    <div class="code-output">En index.html línea: <strong>27</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Subtítulo</label>
+                    <textarea id="subtitle">Mira nuestro video y aprende las estrategias que usamos con nuestros clientes</textarea>
+                    <div class="code-output">En index.html línea: <strong>28</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Texto Botón CTA</label>
+                    <input type="text" id="ctaText" value="Agendar una Llamada" 
+                           placeholder="Texto del botón">
+                    <div class="code-output">En index.html línea: <strong>48</strong></div>
+                </div>
+            </div>
+
+            <!-- Preview de Textos -->
+            <div class="panel">
+                <h2>👁️ Vista Previa</h2>
+                <div class="preview">
+                    <h3 id="previewCompany">DeMalia</h3>
+                    <p id="previewTagline">Automatización de Procesos Estratégica</p>
+                    <hr style="width: 50%; border: 1px solid rgba(0, 102, 255, 0.2); margin: 20px auto;">
+                    <h4 id="previewTitle" style="font-size: 1.5rem; color: #f5f5f5;">Descubre Cómo Automatizar Tu Negocio</h4>
+                </div>
+            </div>
+
+            <!-- Colores -->
+            <div class="panel">
+                <h2>🎨 Colores Dopamínicos</h2>
+                
+                <div class="control-group">
+                    <label>Color Azul Principal</label>
+                    <input type="color" id="accentBlue" value="#0066ff">
+                    <div class="code-output">En styles.css línea: <strong>7</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Color Cyan</label>
+                    <input type="color" id="accentCyan" value="#00d4ff">
+                    <div class="code-output">En styles.css línea: <strong>8</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Color Púrpura</label>
+                    <input type="color" id="accentPurple" value="#7c3aed">
+                    <div class="code-output">En styles.css línea: <strong>9</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Color Rosa</label>
+                    <input type="color" id="accentPink" value="#ec4899">
+                    <div class="code-output">En styles.css línea: <strong>10</strong></div>
+                </div>
+
+                <button onclick="generateColorCode()">Generar CSS de Colores</button>
+                <div class="code-output" id="colorOutput"></div>
+                <div class="success-message" id="colorSuccess">✅ Código copiado al portapapeles</div>
+            </div>
+
+            <!-- Preview Colores -->
+            <div class="panel">
+                <h2>🌈 Vista Previa Colores</h2>
+                <div class="preview" style="padding: 20px;">
+                    <div class="button-preview" id="buttonPreview" style="background: linear-gradient(135deg, #0066ff, #00d4ff);">
+                        Agendar una Llamada
+                    </div>
+                    <p style="margin-top: 20px; font-size: 0.9rem; color: #00d4ff;">
+                        Así se verá tu botón con los colores seleccionados
+                    </p>
+                </div>
+            </div>
+
+            <!-- Enlaces -->
+            <div class="panel">
+                <h2>🔗 Enlaces Importantes</h2>
+                
+                <div class="control-group">
+                    <label>URL de Calendly</label>
+                    <input type="text" id="calendlyUrl" 
+                           value="https://calendly.com/hector-demaliaconsulting/reunion-estrategica-de-automatizacion-de-procesos"
+                           placeholder="Tu link de Calendly">
+                    <div class="code-output">En index.html línea: <strong>61</strong></div>
+                </div>
+
+                <div class="control-group">
+                    <label>Video ID (YouTube)</label>
+                    <input type="text" id="videoId" value="dQw4w9WgXcQ" 
+                           placeholder="Tu video ID">
+                    <div class="code-output">En index.html línea: <strong>41</strong></div>
+                </div>
+
+                <button onclick="generateEmbedCode()">Generar Código de Embebido</button>
+                <div class="code-output" id="embedOutput"></div>
+                <div class="success-message" id="embedSuccess">✅ Código copiado al portapapeles</div>
+            </div>
+
+            <!-- Beneficios -->
+            <div class="panel">
+                <h2>⚡ Beneficios</h2>
+                
+                <div class="control-group">
+                    <label>Beneficio 1 (Emoji + Texto)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="benefit1Emoji" value="⚡" style="width: 50px;">
+                        <input type="text" id="benefit1Text" value="Ahorra 10+ horas semanales" placeholder="Texto beneficio">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Beneficio 2 (Emoji + Texto)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="benefit2Emoji" value="📈" style="width: 50px;">
+                        <input type="text" id="benefit2Text" value="Aumenta tu productividad" placeholder="Texto beneficio">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Beneficio 3 (Emoji + Texto)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="benefit3Emoji" value="🚀" style="width: 50px;">
+                        <input type="text" id="benefit3Text" value="Crece sin trabajar más" placeholder="Texto beneficio">
+                    </div>
+                </div>
+
+                <button onclick="generateBenefitsCode()">Generar Beneficios HTML</button>
+                <div class="code-output" id="benefitsOutput"></div>
+                <div class="success-message" id="benefitsSuccess">✅ Código copiado al portapapeles</div>
+            </div>
+        </div>
+
+        <!-- Instrucciones Finales -->
+        <div class="panel" style="grid-column: 1 / -1;">
+            <h2>📋 Cómo Usar Este Herramienta</h2>
+            <p style="color: #b0b0b0; line-height: 1.8; margin-bottom: 20px;">
+                1️⃣ <strong>Edita los campos</strong> arriba para ver cambios en la vista previa<br>
+                2️⃣ <strong>Genera el código</strong> haciendo clic en los botones<br>
+                3️⃣ <strong>Copia el código</strong> generado (automático al hacer clic)<br>
+                4️⃣ <strong>Pega en index.html</strong> o styles.css en la línea indicada<br>
+                5️⃣ <strong>Recarga tu página</strong> para ver los cambios<br>
+            </p>
+
+            <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 15px; border-radius: 5px; color: #10b981;">
+                💡 <strong>Tip:</strong> Todos los códigos generados se copian automáticamente al portapapeles. Solo pégalos en el archivo HTML/CSS.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Actualizar previsualizaciones en tiempo real
+        document.getElementById('companyName').addEventListener('input', (e) => {
+            document.getElementById('previewCompany').textContent = e.target.value || 'DeMalia';
+        });
+
+        document.getElementById('tagline').addEventListener('input', (e) => {
+            document.getElementById('previewTagline').textContent = e.target.value || 'Automatización de Procesos Estratégica';
+        });
+
+        document.getElementById('mainTitle').addEventListener('input', (e) => {
+            document.getElementById('previewTitle').textContent = e.target.value || 'Descubre Cómo Automatizar Tu Negocio';
+        });
+
+        // Cambiar colores
+        document.querySelectorAll('input[type="color"]').forEach(input => {
+            input.addEventListener('change', updateButtonColors);
+            input.addEventListener('input', updateButtonColors);
+        });
+
+        function updateButtonColors() {
+            const blue = document.getElementById('accentBlue').value;
+            const cyan = document.getElementById('accentCyan').value;
+            const buttonPreview = document.getElementById('buttonPreview');
+            buttonPreview.style.background = `linear-gradient(135deg, ${blue}, ${cyan})`;
+        }
+
+        function generateColorCode() {
+            const code = `:root {
+    --accent-blue: ${document.getElementById('accentBlue').value};
+    --accent-cyan: ${document.getElementById('accentCyan').value};
+    --accent-purple: ${document.getElementById('accentPurple').value};
+    --accent-pink: ${document.getElementById('accentPink').value};
+}`;
+            
+            document.getElementById('colorOutput').textContent = code;
+            navigator.clipboard.writeText(code);
+            showSuccess('colorSuccess');
+        }
+
+        function generateEmbedCode() {
+            const videoId = document.getElementById('videoId').value;
+            const code = `<iframe 
+    width="100%" 
+    height="100%" 
+    src="https://www.youtube.com/embed/${videoId}" 
+    title="VSL - Automatización de Procesos"
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>`;
+            
+            document.getElementById('embedOutput').textContent = code;
+            navigator.clipboard.writeText(code);
+            showSuccess('embedSuccess');
+        }
+
+        function generateBenefitsCode() {
+            const code = `<div class="benefit-item">
+    <span class="benefit-icon">${document.getElementById('benefit1Emoji').value}</span>
+    <p>${document.getElementById('benefit1Text').value}</p>
+</div>
+
+<div class="benefit-item">
+    <span class="benefit-icon">${document.getElementById('benefit2Emoji').value}</span>
+    <p>${document.getElementById('benefit2Text').value}</p>
+</div>
+
+<div class="benefit-item">
+    <span class="benefit-icon">${document.getElementById('benefit3Emoji').value}</span>
+    <p>${document.getElementById('benefit3Text').value}</p>
+</div>`;
+            
+            document.getElementById('benefitsOutput').textContent = code;
+            navigator.clipboard.writeText(code);
+            showSuccess('benefitsSuccess');
+        }
+
+        function showSuccess(elementId) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialize button colors
+        updateButtonColors();
+    </script>
+</body>
+</html>

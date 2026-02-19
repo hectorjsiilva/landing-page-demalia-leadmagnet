@@ -1,0 +1,95 @@
+{
+  "site": {
+    "title": "Automatización de Procesos - DeMalia Consulting",
+    "description": "Descubre cómo automatizar tu negocio y ahorrar 10+ horas semanales",
+    "language": "es"
+  },
+  "company": {
+    "name": "DeMalia",
+    "tagline": "Automatización de Procesos Estratégica",
+    "phone": "",
+    "email": ""
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "dQw4w9WgXcQ",
+    "title": "VSL - Automatización de Procesos",
+    "autoplay": false,
+    "controls": true,
+    "allowFullscreen": true
+  },
+  "calendly": {
+    "url": "https://calendly.com/hector-demaliaconsulting/reunion-estrategica-de-automatizacion-de-procesos",
+    "duration": "30 minutos"
+  },
+  "cta": {
+    "buttonText": "Agendar una Llamada",
+    "buttonSubtext": "Reserva tu asesoría gratuita de 30 minutos",
+    "ctaText": "Agendar una Llamada"
+  },
+  "hero": {
+    "mainTitle": "Descubre Cómo Automatizar Tu Negocio",
+    "subtitle": "Mira nuestro video y aprende las estrategias que usamos con nuestros clientes"
+  },
+  "benefits": [
+    {
+      "icon": "⚡",
+      "text": "Ahorra 10+ horas semanales"
+    },
+    {
+      "icon": "📈",
+      "text": "Aumenta tu productividad"
+    },
+    {
+      "icon": "🚀",
+      "text": "Crece sin trabajar más"
+    }
+  ],
+  "colors": {
+    "primary_dark": "#0a0e27",
+    "primary_darker": "#050812",
+    "accent_blue": "#0066ff",
+    "accent_cyan": "#00d4ff",
+    "accent_purple": "#7c3aed",
+    "accent_pink": "#ec4899",
+    "text_light": "#f5f5f5",
+    "text_secondary": "#b0b0b0"
+  },
+  "socials": {
+    "facebook": "",
+    "instagram": "",
+    "tiktok": "",
+    "linkedin": "",
+    "youtube": "",
+    "whatsapp": ""
+  },
+  "seo": {
+    "keywords": "automatización, procesos, negocio, productividad, estrategia",
+    "author": "DeMalia Consulting",
+    "robots": "index, follow",
+    "canonical": ""
+  },
+  "tracking": {
+    "googleAnalyticsId": "",
+    "facebookPixel": "",
+    "hotjarId": ""
+  },
+  "footer": {
+    "copyright": "2026 DeMalia Consulting",
+    "showLinks": true,
+    "links": [
+      {
+        "text": "Contacto",
+        "url": "#"
+      },
+      {
+        "text": "Privacidad",
+        "url": "#"
+      },
+      {
+        "text": "Términos",
+        "url": "#"
+      }
+    ]
+  }
+}

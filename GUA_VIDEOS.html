@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizar Video - Landing Page DeMalia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27, #050812);
+            color: #f5f5f5;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: rgba(0, 102, 255, 0.05);
+            border: 2px solid rgba(0, 102, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: #0066ff;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        p, li {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        code {
+            background: rgba(0, 102, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: #00d4ff;
+        }
+
+        .code-block {
+            background: rgba(0, 20, 50, 0.8);
+            border-left: 3px solid #0066ff;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 10px 10px 0;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        .preview-container {
+            background: rgba(0, 50, 100, 0.3);
+            border: 2px dashed rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            color: #f5f5f5;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        label {
+            display: block;
+            color: #00d4ff;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .warning {
+            background: rgba(234, 88, 12, 0.1);
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            color: #ea580c;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 102, 255, 0.2);
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎬 Guía de Videos</h1>
+            <p>Cómo agregar tu vídeo VSL a la landing page</p>
+        </div>
+
+        <!-- YouTube -->
+        <div class="section">
+            <h2>▶️ YouTube (Recomendado)</h2>
+            
+            <h3>Paso 1: Obtener el ID del Video</h3>
+            <p>1. Abre tu vídeo en YouTube</p>
+            <p>2. Copia el ID de la URL. Si la URL es:</p>
+            <div class="code-block">
+https://www.youtube.com/watch?v=abc123def456
+            </div>
+            <p>Tu ID es: <code>abc123def456</code></p>
+
+            <h3>Paso 2: Modificar el HTML</h3>
+            <p>En <code>index.html</code>, línea 41, reemplaza:</p>
+            <div class="code-block">
+&lt;iframe src="https://www.youtube.com/embed/<strong>TU_ID_AQUI</strong>"&gt;
+            </div>
+
+            <h3>Ejemplo Completo</h3>
+            <div class="code-block">
+&lt;iframe 
+    width="100%" 
+    height="100%" 
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+    title="VSL - Automatización de Procesos"
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen&gt;
+&lt;/iframe&gt;
+            </div>
+
+            <label>Tu Video ID de YouTube:</label>
+            <input type="text" id="youtubeId" placeholder="Ejemplo: dQw4w9WgXcQ">
+            <button onclick="generarYouTubeCode()">Generar Código</button>
+
+            <div class="preview-container" id="youtubePreview">
+                <p>Tu código aparecerá aquí ↓</p>
+            </div>
+            <div class="code-block" id="youtubeCode"></div>
+        </div>
+
+        <!-- Vimeo -->
+        <div class="section">
+            <h2>🎥 Vimeo</h2>
+            
+            <h3>Paso 1: Obtener el ID del Video</h3>
+            <p>1. Abre tu vídeo en Vimeo</p>
+            <p>2. Copia el número de la URL. Si la URL es:</p>
+            <div class="code-block">
+https://vimeo.com/123456789
+            </div>
+            <p>Tu ID es: <code>123456789</code></p>
+
+            <h3>Paso 2: Reemplazar el iframe</h3>
+            <div class="code-block">
+&lt;iframe 
+    src="https://player.vimeo.com/video/<strong>TU_ID_AQUI</strong>" 
+    width="100%" 
+    height="100%" 
+    frameborder="0" 
+    allow="autoplay; fullscreen; picture-in-picture" 
+    allowfullscreen&gt;
+&lt;/iframe&gt;
+            </div>
+
+            <label>Tu Video ID de Vimeo:</label>
+            <input type="text" id="vimeoId" placeholder="Ejemplo: 123456789">
+            <button onclick="generarVimeoCode()">Generar Código</button>
+
+            <div class="preview-container" id="vimeoPreview">
+                <p>Tu código aparecerá aquí ↓</p>
+            </div>
+            <div class="code-block" id="vimeoCode"></div>
+        </div>
+
+        <!-- Video Directamente Cargado -->
+        <div class="section">
+            <h2>📹 Video en Servidor Propio (MP4)</h2>
+            
+            <h3>Opción: Cargar video directamente</h3>
+            <p>Si tienes tu video en formato MP4:</p>
+            
+            <div class="code-block">
+&lt;video width="100%" controls style="border-radius: 18px; width: 100%; max-width: 100%;"&gt;
+    &lt;source src="tu-video.mp4" type="video/mp4"&gt;
+    Tu navegador no soporta videos HTML5
+&lt;/video&gt;
+            </div>
+
+            <p class="warning">⚠️ Nota: Esto requiere alojar el archivo MP4 en tu servidor web.</p>
+        </div>
+
+        <!-- Loom -->
+        <div class="section">
+            <h2>🎞️ Loom (Screenrecordings)</h2>
+            
+            <h3>Obtener un video de Loom</h3>
+            <p>1. Crea o abre tu grabación en Loom</p>
+            <p>2. Haz clic en "Share"</p>
+            <p>3. Copia el enlace compartible y úsalo así:</p>
+            
+            <div class="code-block">
+&lt;iframe 
+    src="https://www.loom.com/embed/TU_LOOM_ID" 
+    width="100%" 
+    height="100%"
+    frameborder="0" 
+    allowfullscreen&gt;
+&lt;/iframe&gt;
+            </div>
+
+            <label>Tu URL de Loom (completa):</label>
+            <input type="text" id="loomUrl" placeholder="https://www.loom.com/share/abc123...">
+            <button onclick="procesoLoom()">Procesar Loom</button>
+            <div class="code-block" id="loomCode"></div>
+        </div>
+
+        <!-- Stream.io o similar -->
+        <div class="section">
+            <h2>🎬 Otros Proveedores</h2>
+            
+            <p>Para servicios como:</p>
+            <ul>
+                <li><strong>Mux:</strong> Obtén el ID y usa <code>https://image.mux.com/{ID}/thumbnail.jpg</code></li>
+                <li><strong>JW Player:</strong> Copia el embed code directamente</li>
+                <li><strong>Wistia:</strong> Copia el código de embebido</li>
+                <li><strong>Vidyard:</strong> Copia el iframe proporcionado</li>
+            </ul>
+
+            <p>En todos los casos, reemplaza el contenido del <code>.video-wrapper</code> en index.html con el código de embebido del proveedor.</p>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="section">
+            <h2>❓ Solucionar Problemas</h2>
+            
+            <h3>El video no aparece</h3>
+            <ul>
+                <li>Verifica que el ID sea correcto</li>
+                <li>Asegúrate de que el video sea público (no privado)</li>
+                <li>Recarga la página (Cmd+R o Ctrl+R)</li>
+                <li>Abre las herramientas de desarrollador (F12) para ver errores</li>
+            </ul>
+
+            <h3>El video aparece pero sin controles</h3>
+            <ul>
+                <li>Verifica que <code>allow="accelerometer; autoplay..."</code> esté incluido</li>
+                <li>Para YouTube, aumenta los parámetros: <code>?controls=1&showinfo=0</code></li>
+            </ul>
+
+            <h3>Auto-play no funciona</h3>
+            <p>Los navegadores modernos no permiten autoplay con sonido. Usa:</p>
+            <div class="code-block">
+?autoplay=1&mute=1
+            </div>
+        </div>
+
+        <!-- Copy to clipboard helper -->
+        <div class="footer">
+            <p>💡 Tip: Una vez que tengas el código correcto, cópialo y pégalo en <code>index.html</code> línea 41</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Creado para DeMalia Consulting</p>
+        </div>
+    </div>
+
+    <script>
+        function generarYouTubeCode() {
+            const id = document.getElementById('youtubeId').value.trim();
+            if (!id) {
+                alert('Por favor ingresa un ID de YouTube');
+                return;
+            }
+
+            const code = `<iframe 
+    width="100%" 
+    height="100%" 
+    src="https://www.youtube.com/embed/${id}" 
+    title="VSL - Automatización de Procesos"
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>`;
+
+            document.getElementById('youtubeCode').textContent = code;
+            document.getElementById('youtubeCode').style.display = 'block';
+            
+            document.getElementById('youtubePreview').innerHTML = `
+                <div class="success">
+                    ✅ Código generado. Cópialo y reemplaza el iframe en index.html (línea 41)
+                </div>
+            `;
+
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(code);
+        }
+
+        function generarVimeoCode() {
+            const id = document.getElementById('vimeoId').value.trim();
+            if (!id) {
+                alert('Por favor ingresa un ID de Vimeo');
+                return;
+            }
+
+            const code = `<iframe 
+    src="https://player.vimeo.com/video/${id}" 
+    width="100%" 
+    height="100%" 
+    frameborder="0" 
+    allow="autoplay; fullscreen; picture-in-picture" 
+    allowfullscreen>
+</iframe>`;
+
+            document.getElementById('vimeoCode').textContent = code;
+            document.getElementById('vimeoCode').style.display = 'block';
+            
+            document.getElementById('vimeoPreview').innerHTML = `
+                <div class="success">
+                    ✅ Código generado. Cópialo y reemplaza el iframe en index.html (línea 41)
+                </div>
+            `;
+
+            navigator.clipboard.writeText(code);
+        }
+
+        function procesoLoom() {
+            const url = document.getElementById('loomUrl').value.trim();
+            if (!url || !url.includes('loom.com')) {
+                alert('Por favor ingresa una URL válida de Loom');
+                return;
+            }
+
+            const id = url.split('/').pop();
+            const code = `<iframe 
+    src="https://www.loom.com/embed/${id}" 
+    width="100%" 
+    height="100%"
+    frameborder="0" 
+    allowfullscreen>
+</iframe>`;
+
+            document.getElementById('loomCode').textContent = code;
+            document.getElementById('loomCode').style.display = 'block';
+            
+            document.getElementById('loomCode').parentElement.innerHTML += `
+                <div class="success">
+                    ✅ Código generado. Cópialo y reemplaza el iframe en index.html (línea 41)
+                </div>
+            `;
+
+            navigator.clipboard.writeText(code);
+        }
+    </script>
+</body>
+</html>
